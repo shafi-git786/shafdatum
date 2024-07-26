@@ -1,14 +1,17 @@
-# Name: Build and deploy ASP.NET app to Azure Web App
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+#name: Build and deploy ASP app to Azure Web App - shafiwebappshafi
 name: build
 
 on:
   push:
     branches:
-      - master
-  # Uncomment the following lines if you also want to trigger on pull requests
+      - master 
   # pull_request:
   #   branches:
-  #     - master
+  #     - master 
+            
 
 jobs:
   build:
@@ -26,14 +29,14 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore
 
-      - name: Build project
-        run: msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)" /p:Configuration=Release
-
+      - name: Publish to folder
+        #run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
+        run: /p:SkipInvalidConfigurations=true /p:DeployOnbuild=True /p:GenerateProjectSpecificOutputFolder=true /p:GenerateBuildInfoConfigFile=false /p:UseWPP_CopyWebApplication=true /p:PipelineDependsOnBuild=false /p:langversion=latest 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: ASP-app
-          path: '**/*.zip'  # Adjust this to match the output path of your build
+          path: '/published/**'
 
   deploy:
     runs-on: windows-latest
@@ -55,4 +58,7 @@ jobs:
           app-name: 'demo-webapp-eastus'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_25A62AB37C5C4E3097975179A3887A45 }}
-          package: '*.zip'  # Make sure this matches the artifact uploaded in the build step
+          package: .
+          
+          
+          # this is for testing
