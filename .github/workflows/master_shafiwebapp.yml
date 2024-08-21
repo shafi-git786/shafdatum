@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-#name: Build and deploy ASP app to Azure Web App - shafiwebappshafi
+#name: Build and deploy ASP app to Azure Web App 
 name: build
 
 on:
@@ -30,8 +30,8 @@ jobs:
         run: nuget restore
 
       - name: Publish to folder
-        #run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
-        run: /p:SkipInvalidConfigurations=true /p:DeployOnbuild=True /p:GenerateProjectSpecificOutputFolder=true /p:GenerateBuildInfoConfigFile=false /p:UseWPP_CopyWebApplication=true /p:PipelineDependsOnBuild=false /p:langversion=latest 
+        run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
+        #run: /p:SkipInvalidConfigurations=true /p:DeployOnbuild=True /p:GenerateProjectSpecificOutputFolder=true /p:GenerateBuildInfoConfigFile=false /p:UseWPP_CopyWebApplication=true /p:PipelineDependsOnBuild=false /p:langversion=latest 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
@@ -55,7 +55,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'demo-webapp-eastus'
+          app-name: 'demappsevic12'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_25A62AB37C5C4E3097975179A3887A45 }}
           package: .
