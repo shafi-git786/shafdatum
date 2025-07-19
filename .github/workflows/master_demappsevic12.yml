@@ -48,8 +48,8 @@ jobs:
           name: ASP-app
           path: ./ASP-app
 
-      - name: List files after download
-        run: dir /s    
+      # - name: List files after download
+      #   run: dir /s    
 
       - name: Zip artifact for deployment
         run: Compress-Archive -Path ASP-app\* -DestinationPath deploy.zip 
