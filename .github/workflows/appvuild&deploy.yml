@@ -6,8 +6,8 @@ name: Build and deploy ASP app to Azure Web App
 on:
   push:
     branches:
-      - master
-      #- none
+      #- master
+      - none
   workflow_dispatch:
 
 jobs:
