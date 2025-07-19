@@ -3,8 +3,8 @@ name: Build and deploy ASP.NET 4.8 app to Azure Web App
 on:
   push:
     branches:
-      #- master
-      - none
+      - master
+      #- none
   workflow_dispatch:
 
 jobs:
