@@ -40,7 +40,7 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      #url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download artifact from build job
@@ -64,5 +64,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'mywebap729'
-          slot-name: 'Production'
+          #slot-name: 'Production'
           package: ./ASP-app
