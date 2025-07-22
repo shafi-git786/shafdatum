@@ -53,8 +53,8 @@ jobs:
         run: Get-ChildItem -Recurse | Format-List FullName
    
 
-      - name: Zip artifact for deployment
-        run: Compress-Archive -Path ASP-app\* -DestinationPath deploy.zip
+      # - name: Zip artifact for deployment
+      #   run: Compress-Archive -Path ASP-app\* -DestinationPath deploy.zip
         
 
       - name: Deploy to Azure Web App
@@ -64,4 +64,4 @@ jobs:
           app-name: 'mywebap729'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
-          package: .
+          package: ./ASP-app
