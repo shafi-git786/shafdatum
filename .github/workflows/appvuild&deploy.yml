@@ -63,6 +63,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'mywebap729'
+          app-name: '2ndwebapp'
           #slot-name: 'Production'
           package: ./ASP-app
